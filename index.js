@@ -1,5 +1,5 @@
 const express = require('express');
-const connect = require('./connect_db');
+const connect = require('./db/connect_db');
 const studentRoute = require('./routes/student_route');
 const mentorRoute = require('./routes/mentor_route');
 
