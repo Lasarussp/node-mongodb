@@ -2,7 +2,7 @@ const mentorDetails = require('../models/mentors');
 const express = require('express');
 const router = express.Router();
 
-//  get all mentors
+// To get all mentors
 router.get('/mentors', (req, res) => {
   try {
     mentorDetails.find((err, data) => {
@@ -26,7 +26,7 @@ router.get('/mentor/:id', (req, res) => {
         res
           .status(403)
           .send(
-            'Error occured while getting students with particular mentors.'
+            'An error occured while getting students with particular mentors.'
           );
       } else {
         res.status(200).send(data);
@@ -50,6 +50,7 @@ router.post('/mentor', (req, res) => {
         if (err) {
           return res.status(401).send(err);
         }
+
         return res.status(201).send(data);
       });
     } catch (err) {
@@ -80,13 +81,14 @@ router.post('/mentor', (req, res) => {
 router.put('/assign-students/:id', (req, res) => {
   //  already assigned students not shown for particular mentor
   // assigned students id not duplicated
-  // student not assigned to mentor set to assign
+  // if the student not assigned to that mentor then set to assign
   try {
     if (mentorDetails.assigned_students == []) {
       mentorDetails.findOneAndUpdate(
         {
           _id: req.params.id,
         },
+
         {
           $addToSet: {
             assigned_students: {
@@ -95,6 +97,7 @@ router.put('/assign-students/:id', (req, res) => {
           },
         },
         { new: true },
+
         (err, mentor) => {
           if (err) {
             console.log(err);

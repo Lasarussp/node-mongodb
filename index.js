@@ -1,22 +1,23 @@
 const express = require('express');
-const connect = require('./db/connect');
+const connect = require('./connect_db');
 const studentRoute = require('./routes/student_route');
 const mentorRoute = require('./routes/mentor_route');
-connect();
 
-// dotenv setup 
+// dotenv environment setup
 require('dotenv').config();
 
-// server
+// web server
 const app = express();
 app.use(express.json());
 
-// connect with routes 
-app.use('/',studentRoute);
-app.use('/',mentorRoute);
+// To connected with routes
+app.use('/', studentRoute);
+app.use('/', mentorRoute);
 
-const port = process.env.PORT || 4000;
+let port = process.env.PORT || 4000;
 
-app.listen(port, () => {
-    console.log(`App is running on the port ${PORT}`);
+app.listen(port, async () => {
+  console.log(`The App is running on the port ${port}`);
+  // connect to the database
+  await connect();
 });
