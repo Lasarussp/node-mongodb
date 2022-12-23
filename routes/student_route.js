@@ -5,14 +5,16 @@ const router = express.Router();
 // Homepage
 router.get('/', (req, res) => {
   res.status(200).send(`
-   Welcome to my APP😊,
-   To get all the students ---> /students,\n
-   To assign a mentor to student or change mentor ----> /assign-mentor/:id (ex:id=1,2,3),\n
-   To get all mentors ------------------> /mentors,
-   To show all students for paticular mentors--------> /mentor/:id (ex:id=1,2,3),\n
-   To create a menotr-------> /mentor,\n
-   To assign students to mentor---------------> /assign-students/:id,\n
+   Welcome to my APP😊
   `);
+  /*
+  To get all the students ---> /students,
+   To assign a mentor to student or change mentor ----> /assign-mentor/:id (ex:id=1,2,3),
+   To get all mentors ------------------> /mentors,
+   To show all students for paticular mentors--------> /mentor/:id (ex:id=1,2,3),
+   To create a menotr-------> /mentor,
+   To assign students to mentor---------------> /assign-students/:id
+  */
 });
 
 // To get all the students
